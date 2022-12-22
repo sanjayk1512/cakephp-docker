@@ -2,6 +2,11 @@
 
 Create PHP Applications in a Docker Container
 
+### To-Do
+
+- [ ] Add `redis/redis-stack` so that you can use RedisInsight to visualize your data
+- [ ] 
+
 This setup spools up the following containers:
 
 * **mariadb** (10.3)
@@ -26,9 +31,9 @@ For those looking to get started in `60 sec` using just the defaults (which are 
  * and the files from this repo into the `docker` folder
 
 	```
-		source/
-		├── docker/ # git clone https://github.com/josephgodwinkimani/php-docker.git docker
-		└── project/
+	source/
+	├── docker/ # git clone https://github.com/josephgodwinkimani/php-docker.git docker
+	└── project/
 
 	```
 
@@ -68,7 +73,7 @@ Docker Compose will automatically replace things like `${MYSQL_USER}` in the `do
 **Using mysql cli**
 
 ```bash
-docker exec -it mysql /usr/bin/mysql -u root -p project
+$ docker exec -it mysql /usr/bin/mysql -u root -p project
 ```
 
 4. From commandline, `cd` into the `docker` directory and run `docker-compose up`
@@ -78,32 +83,11 @@ docker exec -it mysql /usr/bin/mysql -u root -p project
 	$ docker-compose up
 	```
 
-	Here is an example of what my typical setup looks like
-
-	```
-		myapp-folder
-			cakephp
-				src
-				config
-				..
-			docker
-				.env
-				.env.sample
-				docker-compose.yml
-				mysql
-					my.cnf
-				nginx
-					nginx.conf
-				php-fpm
-					Dockerfile
-					php-ini-overrides.ini
-	```
-
-5. Adding your first php project
+5. Adding your first PHP project
 
 If you're creating a new php app using a framework, follow the steps under **PHP Frameworks** below
 
-Go to `localhost:8180` and your php app will be live.
+Go to `localhost:8180` and your PHP app will be live.
 
 
 6. Accessing your database
@@ -116,7 +100,7 @@ You can access your MySQL database from `phpmyadmin` on
 7. Entering the PHP container
 
 ```bash
-docker exec -it php-fpm /bin/bash
+$ docker exec -it php-fpm /bin/bash
 ```
 
 8. Accessing MailHog
@@ -127,6 +111,16 @@ You can access the **Web GUI** (using the defaults) for mailhog at
 
 `http://localhost:8125`
 
+9. Accessing redis
+
+```bash
+$ docker exec -it docker_redis_1 redis-cli
+# monitor keys
+127.0.0.1:6379> monitor
+# to view logs
+$ docker-compose logs redis
+```
+
 
 ## PHP Frameworks
 
@@ -136,15 +130,15 @@ Most of the time I set this up without an existing CakePHP app. This will cause 
 
 ```bash
 cd ~/Projects/source
-docker exec -it php-fpm /bin/bash
+$ docker exec -it php-fpm /bin/bash
 ```
 and then, inside the PHP Container
 
 ```bash
-composer create-project --prefer-dist cakephp/app:~4.0 . 
-composer create-project --prefer-dist laravel/laravel . "5.6.*"
-composer create-project --prefer-dist laravel/lumen .
-composer create-project leafs/api .
+$ composer create-project --prefer-dist cakephp/app:~4.0 . 
+$ composer create-project --prefer-dist laravel/laravel . "5.6.*"
+$ composer create-project --prefer-dist laravel/lumen .
+$ composer create-project leafs/api .
 ```
 Next, fix the database connection configurations in respective frameworks.
 

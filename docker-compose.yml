@@ -55,3 +55,18 @@ services:
       - PMA_HOST=mysql
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  
+  redis:
+    image: docker.io/bitnami/redis:7.0
+    environment:     
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      # Persist data
+      - './redis-persistence/redis_data:/bitnami/redis/data'
+
+volumes:
+  redis_data:
+    driver: local
