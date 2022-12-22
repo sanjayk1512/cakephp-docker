@@ -14,6 +14,7 @@ This setup spools up the following containers:
 * **php-fpm** (php 8.1 with almost all modules)
 * **mailhog** (latest)
 * **phpmyadmin** (latest)
+* **redis** (7.0)
 
 To use different docker image tags:
 
@@ -21,6 +22,7 @@ To use different docker image tags:
 * nginx - use any version of `nginx:alpine`
 * php-fpm - use any version from [phpdockerio/php72-fpm to phpdockerio/php81-fpm](https://hub.docker.com/r/phpdockerio/php)
 * phpmyadmin - use any version of `phpmyadmin`
+* redis - use any version of `bitnami/redis`
 
 ## Getting started
 
