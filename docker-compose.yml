@@ -1,22 +1,13 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
 version: '3.1'
 services:
-  myapp-mailhog:
-    image: 'mailhog/mailhog:latest'
-    container_name: myapp-mailhog
-    ports:
-      - "8125:8025"
-
-  myapp-mysql:
-    image: 'mysql:8.0'
-    container_name: myapp-mysql
-    working_dir: /var/www/myapp
+  mysql:
+    image: 'mariadb:10.3'
+    container_name: mysql
+    working_dir: /var/www/project
     volumes:
         - ../mysql:/var/lib/mysql
         - ../mysql-files:/var/lib/mysql-files
-        - ../cakephp:/var/www/myapp
+        - ../project:/var/www/project
         - ./mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - "8106:3306"
@@ -26,25 +17,41 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
-  myapp-nginx:
+  nginx:
     image: 'nginx:alpine'
-    container_name: myapp-nginx
-    working_dir: /var/www/myapp
+    container_name: nginx
+    working_dir: /var/www/project
     volumes:
-        - ../cakephp:/var/www/myapp
+        - ../project:/var/www/project
         - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
      - "8180:80"
     links:
-     - myapp-php-fpm
+     - php-fpm
 
-  myapp-php-fpm:
+  php-fpm:
     build: ./php-fpm
-    container_name: myapp-php-fpm
-    working_dir: /var/www/myapp
+    container_name: php-fpm
+    working_dir: /var/www/project
     volumes:
-      - ../cakephp:/var/www/myapp
-      - ./php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ../project:/var/www/project
+      - ./php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini
     links:
-      - myapp-mailhog
-      - myapp-mysql
+      - mailhog
+      - mysql
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    container_name: mailhog
+    ports:
+      - "8125:8025"
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
