@@ -17,6 +17,7 @@ This setup spools up the following containers:
 * **phpmyadmin** (latest)
 * **redis** (7.0)
 * **memcached** (1.6.17)
+* **composer** (2.5.1)
 
 To use different docker image tags:
 
