@@ -15,6 +15,7 @@ This setup spools up the following containers:
 * **mailhog** (latest)
 * **phpmyadmin** (latest)
 * **redis** (7.0)
+* **memcached** (1.x)
 
 To use different docker image tags:
 
