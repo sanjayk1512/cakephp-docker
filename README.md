@@ -15,7 +15,7 @@ This setup spools up the following containers:
 * **mailhog** (latest)
 * **phpmyadmin** (latest)
 * **redis** (7.0)
-* **memcached** (1.x)
+* **memcached** (1.6.17)
 
 To use different docker image tags:
 
@@ -24,6 +24,7 @@ To use different docker image tags:
 * php-fpm - use any version from [phpdockerio/php72-fpm to phpdockerio/php81-fpm](https://hub.docker.com/r/phpdockerio/php)
 * phpmyadmin - use any version of `phpmyadmin`
 * redis - use any version of `bitnami/redis`
+* memcached - use any version of `bitnami/memcached`
 
 ## Getting started
 
