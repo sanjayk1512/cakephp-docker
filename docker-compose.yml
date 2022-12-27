@@ -17,6 +17,18 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
+  postgresql:
+    image: 'postgres:12-alpine'
+    ports:
+      - '5004:5432'
+    volumes:
+      - ../pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRESQL_USER}
+      - POSTGRES_PASSWORD=${POSTGRESQL_ROOT_PASSWORD}
+      - POSTGRES_DB=${POSTGRESQL_DATABASE}
+      - POSTGRES_INITDB_ARGS="--data-checksums"
+      
   nginx:
     image: 'nginx:alpine'
     container_name: nginx
@@ -78,6 +90,15 @@ services:
       - MEMCACHED_PASSWORD=password
     ports:
       - '11211:11211'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8282:8080
+    volumes:
+      - '../adminer/adminer.css:/var/www/html/adminer.css'
+      - '../adminer/plugins-enabled:/var/www/html/plugins-enabled'
       
 volumes:
   redis_data:
