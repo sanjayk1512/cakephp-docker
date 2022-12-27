@@ -32,7 +32,7 @@ To use different docker image tags:
 
 For those looking to get started in `60 sec` using just the defaults (which are fine for dev) do the following:
 
-1. Create the following folder structure
+**1. Create the following folder structure**
  * Put your php app inside the `project` folder 
  * and the files from this repo into the `docker` folder
 
@@ -61,7 +61,7 @@ For those looking to get started in `60 sec` using just the defaults (which are 
     cp docker/.env.sample docker/.env
     rm docker.zip
 	```
-3. Change values in your `.env`
+**3. Change database values in your `.env`**
 
 By default the `.env` file will contain the following
 
@@ -85,21 +85,21 @@ Docker Compose will automatically replace things like `${MYSQL_USER}` in the `do
 $ docker exec -it mysql /usr/bin/mysql -u root -p project
 ```
 
-4. From commandline, `cd` into the `docker` directory and run `docker-compose up`
+**4. Start the docker container**
 
 	```bash
 	$ cd ~/Projects/source/docker
 	$ docker-compose up
 	```
 
-5. Adding your first PHP project
+**5. Adding your first PHP project**
 
 If you're creating a new php app using a framework, follow the steps under **PHP Frameworks** below
 
 Go to `localhost:8180` and your PHP app will be live.
 
 
-6. Accessing your database
+**6. Accessing your database**
 
 You can access your MySQL database from `phpmyadmin` on
 
@@ -111,22 +111,21 @@ Whereas other databases you can access from `adminer` on
 
 To add `adminer` plugins and css, add them like this:
 
-	```
-	source/
-	├── docker/ # git clone https://github.com/josephgodwinkimani/php-docker.git docker
-	├── adminer/  # add adminer.css here https://github.com/vrana/adminer/tree/master/designs
-	│   └── plugins-enabled   # add adminer plugins here such as tinymce etc https://www.adminer.org/pl/plugins/
-	└── project/
+```
+source/
+├── docker/ # git clone https://github.com/josephgodwinkimani/php-docker.git docker
+├── adminer/  # add adminer.css here https://github.com/vrana/adminer/tree/master/designs
+│   └── plugins-enabled   # add adminer plugins here such as tinymce etc https://www.adminer.org/pl/plugins/
+└── project/
+```
 
-	```
-
-7. Entering the PHP container
+**7. Entering the PHP container**
 
 ```bash
 $ docker exec -it php-fpm /bin/bash
 ```
 
-8. Accessing MailHog
+**8. Accessing MailHog**
 
 This is just a built-in mail server you can use to 'send' and intercept mail coming from your application.
 
@@ -134,7 +133,7 @@ You can access the **Web GUI** (using the defaults) for mailhog at
 
 `http://localhost:8125`
 
-9. Accessing redis
+**9. Accessing Redis**
 
 ```bash
 $ docker exec -it docker_redis_1 redis-cli
