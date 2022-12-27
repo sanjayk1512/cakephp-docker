@@ -10,6 +10,7 @@ Create PHP Applications in a Docker Container
 This setup spools up the following containers:
 
 * **mariadb** (10.3)
+* **postgresql** (12.0)
 * **nginx**   (latest)
 * **php-fpm** (php 8.1 with almost all modules)
 * **mailhog** (latest)
@@ -20,6 +21,7 @@ This setup spools up the following containers:
 To use different docker image tags:
 
 * mariadb - use any version from `10.3` to `latest`
+* postgresql - use any version from `12-alpine` to `latest`
 * nginx - use any version of `nginx:alpine`
 * php-fpm - use any version from [phpdockerio/php72-fpm to phpdockerio/php81-fpm](https://hub.docker.com/r/phpdockerio/php)
 * phpmyadmin - use any version of `phpmyadmin`
@@ -68,6 +70,9 @@ MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=project
 MYSQL_USER=project
 MYSQL_PASSWORD=project
+POSTGRESQL_USER=postgres
+POSTGRESQL_ROOT_PASSWORD=project
+POSTGRESQL_DATABASE=project
 ```
 
 Docker Compose will automatically replace things like `${MYSQL_USER}` in the `docker-compose.yml` file with whatever corresponding variables it finds defined in `.env`
@@ -100,6 +105,20 @@ You can access your MySQL database from `phpmyadmin` on
 
 `http://localhost:8080/`
 
+Whereas other databases you can access from `adminer` on
+
+`http://localhost:8282/`
+
+To add `adminer` plugins and css, add them like this:
+
+	```
+	source/
+	├── docker/ # git clone https://github.com/josephgodwinkimani/php-docker.git docker
+	├── adminer/  # add adminer.css here https://github.com/vrana/adminer/tree/master/designs
+	│   └── plugins-enabled   # add adminer plugins here such as tinymce etc https://www.adminer.org/pl/plugins/
+	└── project/
+
+	```
 
 7. Entering the PHP container
 
