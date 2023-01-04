@@ -31,6 +31,8 @@ To use different docker image tags:
 
 ## Getting started
 
+> For Windows users run `docker login -u yourdockerhubusername -p yoursecretpassword` before starting
+
 For those looking to get started in `60 sec` using just the defaults (which are fine for dev) do the following:
 
 **1. Create the following folder structure**
