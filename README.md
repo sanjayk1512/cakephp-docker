@@ -101,6 +101,8 @@ If you're creating a new php app using a framework, follow the steps under **PHP
 
 Go to `localhost:8180` and your PHP app will be live.
 
+> For Windows users you need to create a folder `project/webroot` then place any frameworks and files here to be served. For Laravel or Lumen you can always place the public folder files in `project/webroot` and app files inside `project/app` for example. Remember to change the file links in `project/webroot/index.php`
+
 
 **6. Accessing your database**
 
