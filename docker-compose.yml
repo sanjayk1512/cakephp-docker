@@ -22,7 +22,7 @@ services:
     ports:
       - '5004:5432'
     volumes:
-      - ../pgdata:/var/lib/postgresql/data
+      - ../pgdata:/var/lib/postgresql/data 777
     environment:
       - POSTGRES_USER=${POSTGRESQL_USER}
       - POSTGRES_PASSWORD=${POSTGRESQL_ROOT_PASSWORD}

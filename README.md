@@ -170,3 +170,16 @@ $ composer create-project leafs/api .
 Next, fix the database connection configurations in respective frameworks.
 
 Visit `http://localhost:8180` or whatever you set nginx to respond to.
+
+### Extra tweaks for your Laravel/Lumen/LeafPHP project
+
+1. Environment configuration for MySQL or PostgreSQL
+
+```
+DB_CONNECTION=mysql or pgsql
+DB_HOST=172.18.0.1 # use network gateway this maybe 172.17.0.1 or 172.18.0.1. The exact IP address may be different on your system.
+DB_PORT=8106 or 5004 # what you set in docker compose config file for either postgresql or mariadb
+DB_DATABASE=project # mysql or pgsql database we created on creating the container
+DB_USERNAME=root 
+DB_PASSWORD=root
+```
