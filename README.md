@@ -15,7 +15,7 @@ This setup spools up the following containers:
 * **php-fpm** (php 8.1 with almost all modules)
 * **mailhog** (latest)
 * **phpmyadmin** (latest)
-* **redis** (7.0)
+* **redis** (7.2)
 * **memcached** (1.6.17)
 * **composer** (2.5.1)
 
@@ -26,7 +26,7 @@ To use different docker image tags:
 * nginx - use any version of `nginx:alpine`
 * php-fpm - use any version from [phpdockerio/php72-fpm to phpdockerio/php81-fpm](https://hub.docker.com/r/phpdockerio/php)
 * phpmyadmin - use any version of `phpmyadmin`
-* redis - use any version of `bitnami/redis`
+* redis - use any version of `redis`
 * memcached - use any version of `bitnami/memcached`
 
 ## Getting started
@@ -69,13 +69,22 @@ For those looking to get started in `60 sec` using just the defaults (which are 
 By default the `.env` file will contain the following
 
 ```
+# MySQL Configuration
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=project
 MYSQL_USER=project
 MYSQL_PASSWORD=project
+MYSQL_EXTERNAL_PORT=8106
+
+# PostgreSQL Configuration
 POSTGRESQL_USER=postgres
 POSTGRESQL_ROOT_PASSWORD=project
 POSTGRESQL_DATABASE=project
+POSTGRESQL_EXTERNAL_PORT=5004
+
+# Redis Configuration
+REDIS_PASSWORD=foobared # or leave empty
+REDIS_EXTERNAL_PORT=6379
 ```
 
 Docker Compose will automatically replace things like `${MYSQL_USER}` in the `docker-compose.yml` file with whatever corresponding variables it finds defined in `.env`
